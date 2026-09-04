@@ -14,8 +14,12 @@ import {
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
+export const dynamic = 'force-static';
+
 const whatsappHref =
   'https://wa.me/5521997753423?text=Ol%C3%A1%21%20Encontrei%20a%20Conix%20pelo%20site%20e%20gostaria%20de%20agendar%20um%20hor%C3%A1rio.';
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? '';
+const asset = (path: string) => `${basePath}${path}`;
 
 function Logo() {
   return (
@@ -43,7 +47,7 @@ export default function Home() {
       </header>
 
       <section className="hero" aria-labelledby="hero-title">
-        <img className="hero-image" src="/hero-conix.png" alt="Barbeiro finalizando um corte masculino em ambiente contemporâneo" />
+        <img className="hero-image" src={asset('/hero-conix.png')} alt="Barbeiro finalizando um corte masculino em ambiente contemporâneo" />
         <div className="hero-shade" />
         <div className="shell hero-content">
           <p className="eyebrow"><span /> Conix Barbearia · Barra World</p>
@@ -93,15 +97,15 @@ export default function Home() {
         </div>
         <div className="shell gallery-grid" aria-label="Galeria de cortes da Conix">
           <figure className="gallery-tile">
-            <img src="/trabalho-corte.png" alt="Barbeiro realizando degradê em corte masculino" />
+            <img src={asset('/trabalho-corte.png')} alt="Barbeiro realizando degradê em corte masculino" />
             <figcaption>Corte & acabamento</figcaption>
           </figure>
           <figure className="gallery-tile">
-            <img src="/trabalho-barba.png" alt="Cliente com corte clássico e barba cheia alinhada" />
+            <img src={asset('/trabalho-barba.png')} alt="Cliente com corte clássico e barba cheia alinhada" />
             <figcaption>Barba no detalhe</figcaption>
           </figure>
           <figure className="gallery-tile">
-            <img src="/trabalho-infantil.png" alt="Corte infantil platinado com desenho lateral" />
+            <img src={asset('/trabalho-infantil.png')} alt="Corte infantil platinado com desenho lateral" />
             <figcaption>Para todas as idades</figcaption>
           </figure>
         </div>
@@ -119,7 +123,7 @@ export default function Home() {
         <div className="team-grid">
           {team.map((member) => (
             <article className="team-card" key={member.number}>
-              <div className="team-photo"><img src={member.image} alt={`Retrato ilustrativo de ${member.name}, profissional fictício`} /></div>
+              <div className="team-photo"><img src={asset(member.image)} alt={`Retrato ilustrativo de ${member.name}, profissional fictício`} /></div>
               <div className="team-content"><span className="team-number">{member.number} · Exemplo fictício</span><h3>{member.name}</h3><strong>{member.specialty}</strong><p>{member.note}</p><a href={whatsappHref} target="_blank" rel="noreferrer">Agendar com a equipe <ArrowRight /></a></div>
             </article>
           ))}
