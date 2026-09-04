@@ -39,7 +39,10 @@ jobs:
           PAGES_BASE_PATH: /conix
 
       - name: Preparar arquivos do Pages
-        run: touch dist/client/.nojekyll
+        run: |
+          mv dist/client/conix/_next dist/client/_next
+          rmdir dist/client/conix
+          touch dist/client/.nojekyll
 
       - name: Enviar arquivos do site
         uses: actions/upload-pages-artifact@v4
